@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LojaPC – Monte seu setup ideal</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+
+  <!-- =============================================
+       MODAL DO CARRINHO
+       Aparece por cima da página quando clica em
+       "Carrinho". Controlado pelo JS (cart-modal).
+  ============================================= -->
+  <div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+
+  <div class="cart-modal" id="cartModal">
+    <div class="cart-modal__header">
+      <h3><i class="fa-solid fa-cart-shopping"></i> Carrinho</h3>
+      <button class="cart-modal__close" onclick="closeCart()">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <!-- Lista de itens adicionados — preenchida pelo JS -->
+    <div class="cart-modal__items" id="cartItems">
+      <!-- Estado vazio (padrão) -->
+      <div class="cart-empty" id="cartEmpty">
+        <i class="fa-solid fa-box-open"></i>
+        <p>Seu carrinho está vazio</p>
+      </div>
+    </div>
+
+    <!-- Rodapé com total e botão de finalizar -->
+    <div class="cart-modal__footer">
+      <div class="cart-total">
+        <span>Total:</span>
+        <strong id="cartTotal">R$ 0,00</strong>
+      </div>
+      <button class="btn-checkout">Finalizar Compra</button>
+    </div>
+  </div>
+
+  <!-- CABEÇALHO -->
+  <header class="header">
+    <div class="header__logo">
+      <i class="fa-solid fa-shield-halved logo-icon"></i>
+      <span class="logo-text">LOJA<span class="logo-red">PC</span></span>
+    </div>
+
+    <nav class="header__nav">
+      <a href="#">Produtos</a>
+      <a href="#">PCs Prontos</a>
+      <a href="#">Peças</a>
+      <a href="#">Periféricos</a>
+      <a href="#">Suporte</a>
+    </nav>
+
+    <div class="header__search">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="text" placeholder="Buscar (CPU, GPU, etc.)"/>
+    </div>
+
+    <div class="header__actions">
+      <button class="btn-icon"><i class="fa-regular fa-user"></i> Conta</button>
+      <button class="btn-icon"><i class="fa-regular fa-heart"></i></button>
+      <!-- Botão carrinho abre o modal ao clicar -->
+      <button class="btn-icon cart-btn" onclick="openCart()">
+        <i class="fa-solid fa-cart-shopping"></i> Carrinho
+        <span class="cart-badge" id="cartBadge">0</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- LAYOUT -->
+  <div class="layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar__menu">
+        <a href="#" class="sidebar__item sidebar__item--active">
+          <i class="fa-solid fa-house"></i> Início
+        </a>
+        <p class="sidebar__label">Categorias</p>
+        <a href="#" class="sidebar__item"><i class="fa-solid fa-desktop"></i> PCs Prontos</a>
+        <a href="#" class="sidebar__item"><i class="fa-solid fa-microchip"></i> Processadores</a>
+        <a href="#" class="sidebar__item"><i class="fa-solid fa-film"></i> Placas de Vídeo</a>
+        <a href="#" class="sidebar__item"><i class="fa-solid fa-memory"></i> Memórias</a>
+        <a href="#" class="sidebar__item"><i class="fa-solid fa-hard-drive"></i> Armazenamento</a>
+        <a href="#" class="sidebar__item"><i class="fa-solid fa-server"></i> Placas-mãe</a>
+        <a href="#" class="sidebar__item"><i class="fa-solid fa-plug"></i> Fontes</a>
+        <a href="#" class="sidebar__item"><i class="fa-solid fa-box"></i> Gabinetes</a>
+        <a href="#" class="sidebar__item"><i class="fa-solid fa-keyboard"></i> Periféricos</a>
+      </div>
+
+      <div class="sidebar__filters">
+        <p class="sidebar__label">Filtros</p>
+        <label class="filter-label">Preço</label>
+        <input type="range" min="0" max="12000" value="6000" class="range-slider" id="priceRange"/>
+        <div class="range-values">
+          <span>R$ 0</span>
+          <span id="priceVal">R$ 6.000</span>
+        </div>
+        <label class="filter-label" style="margin-top:14px">Marca</label>
+        <div class="brand-tags">
+          <span class="tag tag--active">AMD</span>
+          <span class="tag">Intel</span>
+          <span class="tag">NVIDIA</span>
+        </div>
+        <button class="btn-clear">Limpar filtros</button>
+      </div>
+    </aside>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="main">
+
+      <!-- HERO -->
+      <section class="hero">
+        <div class="hero__text">
+          <h1>Monte seu setup ideal</h1>
+          <p>Peças e PCs com entrega rápida.</p>
+          <div class="hero__buttons">
+            <button class="btn-primary">Ver PCs Prontos</button>
+            <button class="btn-outline">Montar meu PC</button>
+          </div>
+        </div>
+        <div class="hero__image">
+          <!-- Imagem real de setup gamer via Unsplash -->
+          <img
+            src="img/hero.png"
+            alt="Setup Gamer"
+            class="hero__img"
+          />
+        </div>
+      </section>
+
+      <!-- CARDS DE CATEGORIAS -->
+      <section class="category-cards">
+        <div class="cat-card">
+          <div class="cat-card__info">
+            <h3>PCs Prontos</h3>
+            <p>A partir de R$ 3.499</p>
+            <i class="fa-solid fa-arrow-right"></i>
+          </div>
+          <img src="img/cat_pc.png" alt="PC" class="cat-card__img-real"/>
+        </div>
+        <div class="cat-card">
+          <div class="cat-card__info">
+            <h3>Processadores</h3>
+            <p>AMD / Intel</p>
+            <i class="fa-solid fa-arrow-right"></i>
+          </div>
+          <img src="img/cat_cpu.png" alt="CPU" class="cat-card__img-real"/>
+        </div>
+        <div class="cat-card">
+          <div class="cat-card__info">
+            <h3>Placas de Vídeo</h3>
+            <p>RTX / RX</p>
+            <i class="fa-solid fa-arrow-right"></i>
+          </div>
+          <img src="img/cat_gpu.png" alt="GPU" class="cat-card__img-real"/>
+        </div>
+        <div class="cat-card">
+          <div class="cat-card__info">
+            <h3>Memórias</h3>
+            <p>DDR4 / DDR5</p>
+            <i class="fa-solid fa-arrow-right"></i>
+          </div>
+          <img src="img/cat_ram.png" alt="RAM" class="cat-card__img-real"/>
+        </div>
+      </section>
+
+      <!-- DESTAQUES DA SEMANA -->
+      <section class="highlights">
+        <div class="highlights__header">
+          <h2>Destaques da Semana</h2>
+          <a href="#">Ver tudo →</a>
+        </div>
+
+        <div class="products-grid">
+
+          <!-- data-name e data-price são lidos pelo JS ao adicionar no carrinho -->
+          <div class="product-card" data-name="PC Gamer Pro" data-price="7999">
+            <div class="product-card__img">
+              <img src="img/prod_pc.png" alt="PC Gamer Pro"/>
+            </div>
+            <h4>PC Gamer Pro</h4>
+            <p class="product-price">R$ 7.999</p>
+            <button class="btn-buy" onclick="addToCart(this)">Comprar</button>
+          </div>
+
+          <div class="product-card" data-name="RTX 4070" data-price="3599">
+            <div class="product-card__img">
+              <img src="img/prod_gpu.png" alt="RTX 4070"/>
+            </div>
+            <h4>RTX 4070</h4>
+            <p class="product-price">R$ 3.599</p>
+            <button class="btn-buy" onclick="addToCart(this)">Comprar</button>
+          </div>
+
+          <div class="product-card" data-name="Ryzen 5 7600" data-price="1299">
+            <div class="product-card__img">
+              <img src="img/prod_cpu.png" alt="Ryzen 5 7600"/>
+            </div>
+            <h4>Ryzen 5 7600</h4>
+            <p class="product-price">R$ 1.299</p>
+            <button class="btn-buy" onclick="addToCart(this)">Comprar</button>
+          </div>
+
+          <div class="product-card" data-name="SSD NVMe 1TB" data-price="499">
+            <div class="product-card__img">
+              <img src="img/prod_ssd.png" alt="SSD NVMe 1TB"/>
+            </div>
+            <h4>SSD NVMe 1TB</h4>
+            <p class="product-price">R$ 499</p>
+            <button class="btn-buy" onclick="addToCart(this)">Comprar</button>
+          </div>
+
+          <div class="product-card" data-name="Gabinete Air X" data-price="399">
+            <div class="product-card__img">
+              <img src="img/prod_case.png" alt="Gabinete Air X"/>
+            </div>
+            <h4>Gabinete Air X</h4>
+            <p class="product-price">R$ 399</p>
+            <button class="btn-buy" onclick="addToCart(this)">Comprar</button>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- BENEFÍCIOS -->
+      <section class="benefits">
+        <div class="benefit">
+          <i class="fa-solid fa-truck-fast"></i>
+          <div><strong>Frete grátis</strong><span>Acima de R$ 2.999</span></div>
+        </div>
+        <div class="benefit">
+          <i class="fa-solid fa-credit-card"></i>
+          <div><strong>Até 10x sem juros</strong><span>No cartão</span></div>
+        </div>
+        <div class="benefit">
+          <i class="fa-solid fa-headset"></i>
+          <div><strong>Suporte 24/7</strong><span>WhatsApp</span></div>
+        </div>
+        <div class="benefit">
+          <i class="fa-solid fa-rotate-left"></i>
+          <div><strong>Devolução fácil</strong><span>Em até 7 dias</span></div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
